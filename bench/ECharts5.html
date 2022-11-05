@@ -170,7 +170,6 @@
       )
         .then((r) => r.json())
         .then((packed) => {
-          console.log(packed.length);
           wait.textContent = 'Rendering...';
           let data = prepData(packed);
           setTimeout(() => makeChart(data), 0);
