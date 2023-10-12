@@ -21,7 +21,7 @@
       }
 
       function prepData() {
-        console.time('prep');
+        const prepTime0 = performance.now();
 
         function getData(seriesIndex, n) {
           var arr = [],
@@ -74,13 +74,14 @@
 
         let series = getSeries(seriesLength, dataLength);
 
-        console.timeEnd('prep');
+        const prepTime1 = performance.now();
+        console.log(`prep: ${prepTime1 - prepTime0} milliseconds.`);
 
         return series;
       }
 
       function makeChart(data) {
-        console.time('chart');
+        const renderTime0 = performance.now();
 
         let series = [];
 

@@ -21,7 +21,7 @@
       }
 
       function prepData(seriesPoints, numSeries = 1, seriesShift = 0) {
-        console.time('prep');
+        const prepTime0 = performance.now();
 
         let x = Array(seriesPoints),
           ys = [],
@@ -52,7 +52,8 @@
 
         let data = [x].concat(ys);
 
-        console.timeEnd('prep');
+        const prepTime1 = performance.now();
+        console.log(`prep: ${prepTime1 - prepTime0} milliseconds.`);
 
         return data;
       }

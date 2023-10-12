@@ -31,7 +31,7 @@
       }
 
       function prepData(packed) {
-        console.time('prep');
+        const prepTime0 = performance.now();
 
         // epoch,idl,recv,send,read,writ,used,free
 
@@ -76,13 +76,14 @@
 				data[1][36] = null;
 				data[2][730] = null;
 			*/
-        console.timeEnd('prep');
+        const prepTime1 = performance.now();
+        console.log(`prep: ${prepTime1 - prepTime0} milliseconds.`);
 
         return data;
       }
 
       function makeChart(data) {
-        console.time('chart');
+        const renderTime0 = performance.now();
 
         const opts = {
           title: 'Server Events',
@@ -138,7 +139,8 @@
 
         Promise.resolve().then(() => {
           wait.textContent = 'Done!';
-          console.timeEnd('chart');
+          const renderTime1 = performance.now();
+          console.log(`render: ${renderTime1 - renderTime0} milliseconds.`);
         });
       }
 

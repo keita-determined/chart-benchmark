@@ -21,7 +21,7 @@
       }
 
       function prepData(packed) {
-        console.time('prep');
+        const prepTime0 = performance.now();
 
         // epoch,idl,recv,send,read,writ,used,free
 
@@ -44,13 +44,14 @@
           tcp[j] = [date, packed[i + 3]];
         }
 
-        console.timeEnd('prep');
+        const prepTime1 = performance.now();
+        console.log(`prep: ${prepTime1 - prepTime0} milliseconds.`);
 
         return [cpu, ram, tcp];
       }
 
       function makeChart(data) {
-        console.time('chart');
+        const renderTime0 = performance.now();
 
         var options = {
           chart: {
@@ -116,7 +117,8 @@
         chart.render();
 
         wait.textContent = 'Done!';
-        console.timeEnd('chart');
+        const renderTime1 = performance.now();
+        console.log(`render: ${renderTime1 - renderTime0} milliseconds.`);
       }
 
       let wait = document.getElementById('wait');
